@@ -1,0 +1,3 @@
+<?php
+    $chave = 'Senha123';
+?>
