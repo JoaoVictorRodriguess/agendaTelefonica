@@ -49,6 +49,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
     <title>Adicionar Contato</title>
 </head>
 <body>
@@ -57,18 +59,20 @@
         <p style="color:red;"><?php echo htmlspecialchars($mensagem_ero); ?></p>
         <?php endif; ?>
     <form action="adicionarContato.php" method="POST">
-        <label for="nome">Nome: </label><br>
-        <input type="text" id="nome" name="nome" required><br><br>
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="nome" required>
 
-        <label for="telefone">Telefone: </label><br>
-        <input type="text" id="telefone" name="telefone" required><br><br>
+        <label for="telefone">Telefone: </label>
+        <input type="text" id="telefone" value="" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" required>
 
-        <label for="email">Email: </label><br>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" required>
 
         <button type="submit">Salvar Contato</button>
     </form>
-    <br>
-    <a href="listaContato.php">Voltar para a Lista</a>
+    <div class="button_add">
+        <a href="listaContato.php">Voltar para a Lista</a>
+    </div><!--button_add-->
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

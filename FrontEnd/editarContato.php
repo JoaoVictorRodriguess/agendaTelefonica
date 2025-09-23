@@ -98,12 +98,13 @@
     }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
     <title>Editar Contato</title>
 </head>
 <body>
@@ -111,18 +112,20 @@
     <form action="editarContato.php" method="POST">
         <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
 
-        <label for="nome">Nome: </label><br>
-        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>" required><br><br>
+        <label for="nome">Nome: </label>
+        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>" required>
 
-        <label for="telefone">Telefone: </label><br>
-        <input type="text" id="telefone" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" required><br><br>
+        <label for="telefone">Telefone: </label>
+        <input type="text" id="telefone" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" required>
 
-        <label for="email">Email: </label><br>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br><br>
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
 
         <button type="submit">Salvar Alterações</button>
     </form>
-    <br>
-    <a href="listaContato.php">Voltar para a Lista</a>
+    <div class="button_add">
+        <a href="listaContato.php">Voltar para a Lista</a>
+    </div><!--button_add-->
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

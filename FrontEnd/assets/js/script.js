@@ -1,0 +1,32 @@
+function formatarTelefone(valor) {
+    let numeros = valor.replace(/\D/g, ''); //só numeros
+
+    if (numeros.length > 11) numeros = numeros.substring(0, 11);
+
+    let telefone = numeros;
+
+    if (numeros.length > 2) {
+        telefone = '(' + numeros.substring(0, 2) + ')' + numeros.substring(2);
+    } else if (numeros.length > 0) {
+        telefone = '(' + numeros;
+    }
+
+    if (numeros.length > 7) {
+        telefone = '(' + numeros.substring(0,2) + ')' + numeros.substring(2,7) + '-' + numeros.substring(7);
+    }
+
+    return telefone;
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const linksExcluir = document.querySelectorAll('a[href^="excluirContato.php"]');
+
+    linksExcluir.forEach(link => {
+        link.addEventListener('click', function(event) {
+            const confirmacao = confirm('Tem certeza que deseja excluir este contato?');
+            if (!confirmacao) {
+                event.preventDefault(); // Impede que o link seja seguido se o usuário clicar em "Cancelar"
+            }
+        });
+    });
+});

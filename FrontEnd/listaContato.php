@@ -26,12 +26,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/script.js"></script>
     <title>Agenda de Contatos</title>
 </head>
 <body>
-    <h1>Minha Agenda de Contatos </h1>
-    <a href="adicionarContato.php">Adicionar Novo Contato</a>
-    <br><br>
+    <h1>Agenda de Contatos </h1>
+    <div class="button_add">
+        <a href="adicionarContato.php">Adicionar Novo Contato</a>
+    </div><!--button_add-->
     <table border="1" style="width: 100%">
         <thead>
             <tr>
@@ -50,8 +53,8 @@
                         echo "<td>" . htmlspecialchars($contato->telefone) . "</td>";
                         echo "<td>" . htmlspecialchars($contato->email) . "</td>";
                         echo "<td>";
-                        echo "<a href='editarContato.php?id=" . $contato->id . "'>Editar</a> | ";
-                        echo "<a href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
+                        echo "<a class='btn-editar' href='editarContato.php?id=" . $contato->id . "'>Editar</a>";
+                        echo "<a class='btn-excluir' href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
                         echo "</td>";
                         echo "</tr>";  
                     }
