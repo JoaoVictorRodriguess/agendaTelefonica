@@ -1,5 +1,6 @@
 <?php
 
+    session_start();
     require_once("config.php");
 
     $postdata = http_build_query(
@@ -14,7 +15,7 @@
     
     $context = stream_context_create($opts);
 
-    $url = $servidor . 'APIListaContato.php'; //A URL completa agora é a url do servidor + o nome do arquivo da api
+    $url = $servidor . 'APIListaContato.php';
     $result = file_get_contents($url, false, $context);
 
     $jsonObj = json_decode($result);
@@ -34,7 +35,7 @@
     <h1>Agenda de Contatos </h1>
     <div class="button_add">
         <a href="adicionarContato.php">Adicionar Novo Contato</a>
-    </div><!--button_add-->
+    </div>
     <table border="1" style="width: 100%">
         <thead>
             <tr>

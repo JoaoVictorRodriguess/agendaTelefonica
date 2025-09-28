@@ -1,12 +1,15 @@
 <?php
+
+    session_start();
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
         require_once('config.php');
 
         $nome = $_POST['nome'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
 
-        $chave_unica = uniqid(); //gerar uma chave unica para a requisição
+        $chave_unica = uniqid(); 
 
         $postdata = http_build_query(
             array(
@@ -14,7 +17,7 @@
                 'nome' => $nome,
                 'telefone' => $telefone,
                 'email' => $email,
-                'chave_unica' => $chave_unica //a nova chave
+                'chave_unica' => $chave_unica 
                 )
             );
 
@@ -28,15 +31,14 @@
 
         $context = stream_context_create($opts);
 
-        $url = $servidor. 'APIAdicionarContato.php'; //A url da API
+        $url = $servidor. 'APIAdicionarContato.php'; 
 
         $result = file_get_contents($url, false, $context);
 
-        $jsonObj = json_decode($result); //Decodificar a resposta da API
+        $jsonObj = json_decode($result); 
 
-        //Verificar se a operação foi bem sucedida
         if($jsonObj -> status == 'sucesso'){
-            header("Location: listaContato.php"); //redireciona pra pagina de listagem
+            header("Location: listaContato.php");
             exit();
         }else{
             $mensagem_ero = $jsonObj -> mensagem;
@@ -72,7 +74,7 @@
     </form>
     <div class="button_add">
         <a href="listaContato.php">Voltar para a Lista</a>
-    </div><!--button_add-->
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 </html>

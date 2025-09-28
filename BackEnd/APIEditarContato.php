@@ -2,11 +2,11 @@
 
     header("Content-Type: application/json");
 
-    if ( $_SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         require_once('chave.php');
         $api_token = $_POST['api_token'];
-        if($_POST['api_token'] == $chave){
+        if($_POST['api_token'] == $hash){
 
             require_once('../../dbConnect.php');
 
@@ -15,9 +15,9 @@
             $telefone = $_POST['telefone'];
             $email = $_POST['email'];
 
-            $query = 'UPDATE contatos SET nome = ?, telefone = ?, email = ? WHERE id = ?'; //consultei
+            $query = 'UPDATE contatos SET nome = ?, telefone = ?, email = ? WHERE id = ?'; 
 
-            $stmt = mysqli_prepare($conn, $query); //preparei
+            $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, 'sssi', $nome, $telefone, $email, $id);
             $execute = mysqli_stmt_execute($stmt);
 

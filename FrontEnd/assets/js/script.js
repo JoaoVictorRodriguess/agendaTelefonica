@@ -1,5 +1,5 @@
 function formatarTelefone(valor) {
-    let numeros = valor.replace(/\D/g, ''); //só numeros
+    let numeros = valor.replace(/\D/g, ''); 
 
     if (numeros.length > 11) numeros = numeros.substring(0, 11);
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(event) {
             const confirmacao = confirm('Tem certeza que deseja excluir este contato?');
             if (!confirmacao) {
-                event.preventDefault(); // Impede que o link seja seguido se o usuário clicar em "Cancelar"
+                event.preventDefault(); 
             }
         });
     });

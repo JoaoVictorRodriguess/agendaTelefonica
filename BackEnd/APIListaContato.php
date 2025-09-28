@@ -1,26 +1,25 @@
 <?php
 
-    header("Content-Type: application/json"); //Define que é um json
+    header("Content-Type: application/json"); 
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST' )
-    { 
-        require_once('chave.php');//chamar a chave
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
+         
+        require_once('chave.php');
         $api_token = $_POST['api_token'];
-        if($_POST['api_token'] == $chave ){
+        if($api_token == $hash ){
             
-            require_once('../../dbConnect.php'); //Conexão com o banco
+            require_once('../../dbConnect.php'); 
 
-            $query = 'SELECT id, nome, telefone, email FROM contatos'; //Consulta
+            $query = 'SELECT id, nome, telefone, email FROM contatos'; 
             
-            $stmt = mysqli_prepare($conn, $query);//Prepara a consulta ao banco de dados
-            mysqli_stmt_execute($stmt); //Executar 
-            mysqli_stmt_store_result($stmt); //Armazena os resultados da consulta na memória para que usar em outras funções.
+            $stmt = mysqli_prepare($conn, $query);
+            mysqli_stmt_execute($stmt); 
+            mysqli_stmt_store_result($stmt); 
 
-            mysqli_stmt_bind_result($stmt, $id, $nome, $telefone, $email); // armazenar os dados em variaveis
+            mysqli_stmt_bind_result($stmt, $id, $nome, $telefone, $email);
             
-            $response = array(); //Criando um array para carregar os dados da tabela
+            $response = array();
 
-            //carrega os dados em um array
             if ( mysqli_stmt_num_rows($stmt) > 0 ){
                 while(mysqli_stmt_fetch($stmt)){
                     array_push($response, array( "id" => $id,
@@ -30,7 +29,7 @@
                 }
             }
         
-            echo json_encode($response);//Envia para a tela o array em formato json
+            echo json_encode($response);
 
             }else{
                 echo json_encode(array("auth_token" => false));

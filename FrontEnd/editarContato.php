@@ -1,10 +1,10 @@
 <?php
 
+    session_start();
     if($_SERVER['REQUEST_METHOD'] =='POST'){
 
         require_once('config.php');
 
-        //pega os dados do formulario
         $id = $_POST['id'];
         $nome = $_POST['nome'];
         $telefone = $_POST['telefone'];
@@ -35,7 +35,6 @@
         $result = file_get_contents($url, false, $context);
         $jsonObj = json_decode($result);
 
-        // Se a API retornar sucesso, redireciona para a lista
         if ($jsonObj->status == 'sucesso') {
             header("Location: listaContato.php");
             exit();
@@ -46,13 +45,11 @@
         }
     }
 
-    //verifica se a URL contem o 'id'
     else if(isset($_GET['id'])){
         $id = $_GET['id'];
 
         require_once('config.php');
         
-        //requisição para API pegar os dados deste contato
         $postdata = http_build_query(
             array(
                 'api_token' => $token
@@ -72,7 +69,7 @@
         $url = $servidor . 'APIListaContato.php';
         $result = file_get_contents($url, false, $context);
 
-        $contato = json_decode($result);//decodifica a resposta da API
+        $contato = json_decode($result);
 
         $contato_encontrado = false;
         if (is_array($contato)) {
@@ -92,7 +89,6 @@
             exit();
         }
     }else {
-        // Se a página for acessada sem um ID, redireciona para a lista de contatos
         header("Location: listaContato.php");
         exit();
     }
@@ -125,7 +121,7 @@
     </form>
     <div class="button_add">
         <a href="listaContato.php">Voltar para a Lista</a>
-    </div><!--button_add-->
+    </div>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
