@@ -1,9 +1,15 @@
 <?php
 
     session_start();
-    if($_SERVER['REQUEST_METHOD'] =='POST'){
+    require_once('config.php');
 
-        require_once('config.php');
+
+     if($perfil_usuario !='Administrador'){
+        header("Location: listaContato.php");
+        exit();
+    }
+
+    if($_SERVER['REQUEST_METHOD'] =='POST'){
 
         $id = $_POST['id'];
         $nome = $_POST['nome'];
@@ -14,6 +20,7 @@
         $postdata = http_build_query(
             array(
                 'api_token' => $token,
+                'perfil' => $perfil_usuario,
                 'id' => $id,
                 'nome' => $nome,
                 'telefone' => $telefone,

@@ -2,11 +2,18 @@
 
     header("Content-Type: application/json");
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
         require_once('chave.php');
         $api_token = $_POST['api_token'];
+        $perfil = $_POST['perfil'];
         if($_POST['api_token'] == $hash){
+
+            if($perfil !='Administrador'){
+                $response = array("Erro", "mensagem" => "Acesso negado. Apenas Administradores podem realizar esta ação.");
+                echo json_encode(@$response);
+                exit();
+            }
 
             require_once('../../dbConnect.php');
 
@@ -18,10 +25,10 @@
 
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_bind_param($stmt, 'sss', $nome, $telefone, $email);
-            $executou = mysqli_stmt_execute($stmt);
+            $execute = mysqli_stmt_execute($stmt);
 
             $response = array();
-            if($executou) {
+            if($execute) {
                 $response['status'] = 'sucesso';
                 $response['mensagem'] = 'contato adicionado com sucesso!';
             }else{

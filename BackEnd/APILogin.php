@@ -15,14 +15,14 @@
 
             mysqli_set_charset($conn, $charset);
 
-            $query = 'select senha from usuarios where usuario ="' .$usuario .'"';
+            $query = 'SELECT senha, perfil FROM usuarios WHERE usuario = \'' . $usuario . '\'';
 
             $stmt = mysqli_prepare($conn,$query);
 
             mysqli_stmt_execute($stmt);
             mysqli_stmt_store_result($stmt);
 
-            mysqli_stmt_bind_result($stmt, $hash);
+            mysqli_stmt_bind_result($stmt, $hash, $perfil);
 
             $response = array();
 
@@ -32,6 +32,7 @@
                     require_once('chave.php');
                     $response['logou'] = true;
                     $response['chave'] = $chave;
+                    $response['perfil'] = $perfil;
                 }
                 else
                     $response['logou'] = false;

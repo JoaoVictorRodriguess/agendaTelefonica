@@ -1,16 +1,22 @@
 <?php
     
     session_start();
+    require_once('config.php');
+
+
+     if($perfil_usuario !='Administrador'){
+        header("Location: listaContato.php");
+        exit();
+    }
+
     if(isset($_GET['id'])){
 
         $id = $_GET['id'];
 
-        require_once('config.php');
-
-
        $postdata = http_build_query(
             array(
                 'api_token' => $token,
+                'perfil' => $perfil_usuario,
                 'id' => $id 
             )
         );

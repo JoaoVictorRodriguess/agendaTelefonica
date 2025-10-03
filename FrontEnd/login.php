@@ -20,6 +20,9 @@
 
     if ($jsonObj && !empty($jsonObj->logou)) {
         $_SESSION['chave'] = $jsonObj->chave;
+        if(isset($jsonObj->perfil)){
+            $_SESSION['perfil'] = $jsonObj->perfil;
+        }
         header("Location: listaContato.php");
         exit();
     }else{

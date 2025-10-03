@@ -6,7 +6,14 @@
 
         require_once('chave.php');
         $api_token = $_POST['api_token'];
+        $perfil = $_POST['perfil'];
         if($_POST['api_token'] == $hash){
+
+            if($perfil !='Administrador'){
+                $response = array("Erro", "mensagem" => "Acesso negado. Apenas Administradores podem realizar esta ação.");
+                echo json_encode(@$response);
+                exit();
+            }
 
             require_once('../../dbConnect.php');
 

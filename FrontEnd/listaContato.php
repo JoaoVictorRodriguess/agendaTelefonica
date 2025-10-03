@@ -32,17 +32,28 @@
     <title>Agenda de Contatos</title>
 </head>
 <body>
-    <h1>Agenda de Contatos </h1>
-    <div class="button_add">
-        <a href="adicionarContato.php">Adicionar Novo Contato</a>
+    <div class="header">
+        <h1>Agenda de Contatos </h1>
+            <div class="button_exit">
+                <a href="index.html">Sair</a>
+            </div>
     </div>
+    <?php if($perfil_usuario == 'Administrador'):?>
+    <div class="button_add">
+        <a href="adicionarContato.php">Novo Contato</a>
+        <a href="cadastrarUsuario.php">Novo Usuario</a>
+    </div>
+    <?php endif; ?>
     <table border="1" style="width: 100%">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Email</th>
+                <?php
+                    if($perfil_usuario == 'Administrador'): ?>
                 <th>Ações</th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -53,14 +64,18 @@
                         echo "<td>" . htmlspecialchars($contato->nome) . "</td>";
                         echo "<td>" . htmlspecialchars($contato->telefone) . "</td>";
                         echo "<td>" . htmlspecialchars($contato->email) . "</td>";
-                        echo "<td>";
-                        echo "<a class='btn-editar' href='editarContato.php?id=" . $contato->id . "'>Editar</a>";
-                        echo "<a class='btn-excluir' href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
-                        echo "</td>";
+
+                        if($perfil_usuario =='Administrador'){
+                            echo "<td>";
+                            echo "<a class='btn-editar' href='editarContato.php?id=" . $contato->id . "'>Editar</a>";
+                            echo "<a class='btn-excluir' href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
+                            echo "</td>";
+                        }
                         echo "</tr>";  
                     }
                 }else{
-                    echo "<tr><th colspan='4'>Nenhum contato encontrado.</td></tr>";
+                    $colspan = ($perfil_usuario == 'Administrador') ? 4 : 3;
+                    echo "<tr><th colspan='" . $colspan . "'>Nenhum contato encontrado.</td></tr>";
                 }
             ?>
         </tbody>
