@@ -106,27 +106,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/novoPadrão.css">
     <script src="assets/js/script.js"></script>
     <title>Editar Contato</title>
 </head>
 <body>
-    <h1>Editar Contato</h1>
+     <div class="header">
+        <h1>Editar Contato</h1>  
+    </div>
     <form action="editarContato.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
+        <div class="edContato">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>" disabled>
 
-        <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>" required>
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" value="<?php echo htmlspecialchars($nome); ?>" required>
 
-        <label for="telefone">Telefone: </label>
-        <input type="text" id="telefone" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" required>
+            <label for="telefone">Telefone: </label>
+            <input type="text" id="telefone" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" value="<?php echo htmlspecialchars($telefone); ?>" required>
 
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
 
-        <button type="submit">Salvar Alterações</button>
+            <button type="submit">Salvar Alterações</button>
+        </div>
     </form>
-    <div class="button_add">
+    <div class="button_voltar">
         <a href="listaContato.php">Voltar para a Lista</a>
     </div>
     <script src="assets/js/script.js"></script>

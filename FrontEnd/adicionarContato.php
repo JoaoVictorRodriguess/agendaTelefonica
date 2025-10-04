@@ -8,7 +8,6 @@
         exit();
     }
 
-
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $nome = $_POST['nome'];
@@ -58,27 +57,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/novoPadrão.css">
     <script src="assets/js/script.js"></script>
     <title>Adicionar Contato</title>
 </head>
 <body>
-    <h1>Adicionar Novo Contato</h1>
+    <div class="header">
+        <h1>Adicionar Novo Contato</h1>
+    </div><!--header-->
     <form action="adicionarContato.php" method="POST">
-        <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome" required>
+        <div class="addContato">
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" required>
 
-        <label for="telefone">Telefone: </label>
-        <input type="text" id="telefone" value="" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" required>
+            <label for="telefone">Telefone: </label>
+            <input type="text" id="telefone" value="" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" required>
 
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="email" required>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" required>
 
-        <button type="submit">Salvar Contato</button>
+            <button type="submit">Salvar Contato</button>
+        </div><!--addContato-->
     </form>
-    <div class="button_add">
+    <div class="button_voltar">
         <a href="listaContato.php">Voltar para a Lista</a>
-    </div>
+    </div><!--button_voltar-->
     <script src="assets/js/script.js"></script>
 </body>
 </html>

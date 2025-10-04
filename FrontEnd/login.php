@@ -32,22 +32,26 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/novoPadrão.css">
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <div class="header">
+        <h1>Login</h1>  
+    </div>
     <div class="error-message">
         Usuário ou senha inválida
     </div>
     <form action="login.php" method="POST">
-        <label for="usuario">Usuário</label>
-        <input type="text" id="usuario" name="usuario" required>
+        <div class="login">
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" name="usuario" required>
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required>
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" required>
 
-        <button type="submit">Entrar</button>
+            <button type="submit">Entrar</button>
+        </div>
     </form>
 </body>
 </html>

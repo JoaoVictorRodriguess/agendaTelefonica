@@ -73,46 +73,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style2.css">
+    <link rel="stylesheet" href="assets/css/novoPadrão.css">
     <title>Cadastrar Usuário</title>
 </head>
 <body>
-    <h1>Cadastro de Usuario</h1>
-
+    <div class="header">
+        <h1>Cadastro de Usuario</h1>    
+    </div>
      <form action="cadastrarUsuario.php" method="POST">
+        <div class="cadContato">
+            <label for="nome">Nome: </label>
+            <input type="text" id="nome" name="nome" required>
 
-        <label for="nome">Nome: </label>
-        <input type="text" id="nome" name="nome" required>
-
-        <label for="usuario">Email: </label>
-        <input type="email" id="usuario" name="usuario" required>
+            <label for="usuario">Email: </label>
+            <input type="email" id="usuario" name="usuario" required>
 
 
-        <label for="senha">Senha: </label>
-        <input type="password" id="senha" name="senha" required>
+            <label for="senha">Senha: </label>
+            <input type="password" id="senha" name="senha" required>
 
+            <?php
+                if($perfil_admin_logado): ?>
+                    <select name="perfil" id="perfil" required>
+                        <option value="" disabled selected>Selecione o tipo de perfil</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Usuario">Usuario</option>
+                    </select> 
+            <?php endif; ?>
+
+            <button type="submit">Salvar Usuario</button>
+            <button type="reset">Limpar Campos</button>
+        </div>
+        </form>
         <?php
-            if($perfil_admin_logado): ?>
-                 <select name="perfil" id="perfil" required>
-                    <option value="" disabled selected>Selecione o tipo de perfil</option>
-                    <option value="Administrador">Administrador</option>
-                    <option value="Usuario">Usuario</option>
-                </select> 
+                if($perfil_admin_logado): ?>
+                    <div class="button_voltar">
+                        <a href="listaContato.php">Voltar para a Lista</a>
+                    </div><!--button_voltar-->
+        <?php
+            else:?>
+                    <p style="text-align: center; margin-top: 20px;"> 
+                        Já tem conta? <a href="index.html">Voltar para o Login</a> </p>     
         <?php endif; ?>
-
-        <button type="submit">Salvar Usuario</button>
-        <button type="reset">Limpar Campos</button>
-
-     </form>
-     <?php
-            if($perfil_admin_logado): ?>
-                <div class="button_add">
-                    <a href="listaContato.php">Voltar para a Lista</a>
-                </div>
-     <?php
-           else:?>
-                <p style="text-align: center; margin-top: 20px;"> Já tem conta? <a href="index.html">Voltar para o Login</a> </p>     
-    <?php endif; ?>
-
 </body>
 </html>

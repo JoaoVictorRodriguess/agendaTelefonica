@@ -27,7 +27,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/novoPadrão.css">
     <script src="assets/js/script.js"></script>
     <title>Agenda de Contatos</title>
 </head>
@@ -44,41 +44,43 @@
         <a href="cadastrarUsuario.php">Novo Usuario</a>
     </div>
     <?php endif; ?>
-    <table border="1" style="width: 100%">
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Email</th>
+    <div class="listaContato">
+        <table border="1" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <?php
+                        if($perfil_usuario == 'Administrador'): ?>
+                    <th>Ações</th>
+                    <?php endif; ?>
+                </tr>
+            </thead>
+            <tbody>
                 <?php
-                    if($perfil_usuario == 'Administrador'): ?>
-                <th>Ações</th>
-                <?php endif; ?>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-                if (is_array($jsonObj) && !empty($jsonObj)){
-                    foreach ( $jsonObj as $contato){
-                        echo "<tr>";
-                        echo "<td>" . htmlspecialchars($contato->nome) . "</td>";
-                        echo "<td>" . htmlspecialchars($contato->telefone) . "</td>";
-                        echo "<td>" . htmlspecialchars($contato->email) . "</td>";
+                    if (is_array($jsonObj) && !empty($jsonObj)){
+                        foreach ( $jsonObj as $contato){
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($contato->nome) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->telefone) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->email) . "</td>";
 
-                        if($perfil_usuario =='Administrador'){
-                            echo "<td>";
-                            echo "<a class='btn-editar' href='editarContato.php?id=" . $contato->id . "'>Editar</a>";
-                            echo "<a class='btn-excluir' href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
-                            echo "</td>";
+                            if($perfil_usuario =='Administrador'){
+                                echo "<td>";
+                                echo "<a class='btn-editar' href='editarContato.php?id=" . $contato->id . "'>Editar</a>";
+                                echo "<a class='btn-excluir' href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
+                                echo "</td>";
+                            }
+                            echo "</tr>";  
                         }
-                        echo "</tr>";  
+                    }else{
+                        $colspan = ($perfil_usuario == 'Administrador') ? 4 : 3;
+                        echo "<tr><th colspan='" . $colspan . "'>Nenhum contato encontrado.</td></tr>";
                     }
-                }else{
-                    $colspan = ($perfil_usuario == 'Administrador') ? 4 : 3;
-                    echo "<tr><th colspan='" . $colspan . "'>Nenhum contato encontrado.</td></tr>";
-                }
-            ?>
-        </tbody>
-    </table>
+                ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>
