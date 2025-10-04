@@ -1,31 +1,35 @@
 <?php
 
-    session_start();
     require_once('config.php');
 
-    if($perfil_usuario != 'Administrador'){
-        header("Location: listaContato.php");
-        exit();
-    }
+    $mensagem_erro = '';
+    $perfil_admin_logado = isset($perfil_usuario) && $perfil_usuario == 'Administrador';
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
         
         $nome = $_POST['nome'];
         $usuario = $_POST['usuario'];
         $senha = $_POST['senha'];
-        $perfil_novo= $_POST['perfil'];
 
+        if($perfil_admin_logado){
+        $perfil_novo= $_POST['perfil'];
         $postdata = http_build_query(
             array(
-                'api_token' => $token,
-                'perfil_admin' => $perfil_usuario,
                 'nome' => $nome,
                 'usuario' => $usuario,
                 'senha' => $senha,
                 'perfil_novo_usuario' => $perfil_novo
             )
         );
-
+        }else{
+            $postdata = http_build_query(
+            array(
+                'nome' => $nome,
+                'usuario' => $usuario,
+                'senha' => $senha
+            )
+        );
+        }
         $opts = array('http' => 
             array(
                 'method' => 'POST',
@@ -40,13 +44,25 @@
         $result = file_get_contents($url, false, $context);
         $jsonObj = json_decode($result);
 
-        if ($jsonObj->status == 'sucesso') {
-            header("Location: listaContato.php");
-            exit();
+        if($perfil_admin_logado){
+            if ($jsonObj->status == 'sucesso') {
+                header("Location: listaContato.php");
+                exit();
+            }else{
+                $mensagem_erro = "Não foi possivel cadastrar esse contato";
+                header("Location: listaContato.php");
+                exit();
+            }
         }else{
-            $mensagem_erro = "Não foi possivel cadastrar esse contato";
-            header("Location: listaContato.php");
-            exit();
+            if ($jsonObj->status == 'sucesso') {
+                header("Location: index.html");
+                exit();
+            }else{
+                $mensagem_erro = "Não foi possivel cadastrar esse contato";
+                header("Location: index.html");
+                exit();
+            }
+
         }
     }
 
@@ -62,6 +78,7 @@
 </head>
 <body>
     <h1>Cadastro de Usuario</h1>
+
      <form action="cadastrarUsuario.php" method="POST">
 
         <label for="nome">Nome: </label>
@@ -74,15 +91,28 @@
         <label for="senha">Senha: </label>
         <input type="password" id="senha" name="senha" required>
 
-        <select name="perfil" id="perfil" required>
-            <option value="" disabled selected>Selecione o tipo de perfil</option>
-            <option value="Administrador">Administrador</option>
-            <option value="Usuario">Usuario</option>
-        </select> 
+        <?php
+            if($perfil_admin_logado): ?>
+                 <select name="perfil" id="perfil" required>
+                    <option value="" disabled selected>Selecione o tipo de perfil</option>
+                    <option value="Administrador">Administrador</option>
+                    <option value="Usuario">Usuario</option>
+                </select> 
+        <?php endif; ?>
 
         <button type="submit">Salvar Usuario</button>
         <button type="reset">Limpar Campos</button>
 
      </form>
+     <?php
+            if($perfil_admin_logado): ?>
+                <div class="button_add">
+                    <a href="listaContato.php">Voltar para a Lista</a>
+                </div>
+     <?php
+           else:?>
+                <p style="text-align: center; margin-top: 20px;"> Já tem conta? <a href="index.html">Voltar para o Login</a> </p>     
+    <?php endif; ?>
+
 </body>
 </html>

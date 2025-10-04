@@ -104,4 +104,18 @@ button[type="reset"]:hover{
     background-color: #00408d;
 }
 
-
+.button_add a{
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}

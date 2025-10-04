@@ -35,7 +35,7 @@
     <div class="header">
         <h1>Agenda de Contatos </h1>
             <div class="button_exit">
-                <a href="index.html">Sair</a>
+                <a href="logout.php">Sair</a>
             </div>
     </div>
     <?php if($perfil_usuario == 'Administrador'):?>

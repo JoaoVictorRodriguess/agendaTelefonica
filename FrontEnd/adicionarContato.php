@@ -64,9 +64,6 @@
 </head>
 <body>
     <h1>Adicionar Novo Contato</h1>
-    <?php if (isset($mensagem_ero)): ?>
-        <p style="color:red;"><?php echo htmlspecialchars($mensagem_ero); ?></p>
-        <?php endif; ?>
     <form action="adicionarContato.php" method="POST">
         <label for="nome">Nome: </label>
         <input type="text" id="nome" name="nome" required>
