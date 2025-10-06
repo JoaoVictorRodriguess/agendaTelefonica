@@ -18,6 +18,20 @@ function formatarTelefone(valor) {
     return telefone;
 }
 
+function formatarCEP(valor) {
+    let numeros = valor.replace(/\D/g, ''); 
+
+    if (numeros.length > 8) numeros = numeros.substring(0, 8);
+
+    let CEP = numeros;
+
+    if (numeros.length > 5) {
+        CEP = numeros.substring(0,5) + '-' + numeros.substring(5);
+    }
+
+    return CEP;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const linksExcluir = document.querySelectorAll('a[href^="excluirContato.php"]');
 

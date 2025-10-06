@@ -10,13 +10,13 @@
             
             require_once('../../dbConnect.php'); 
 
-            $query = 'SELECT id, nome, telefone, email FROM contatos'; 
+            $query = 'SELECT id, nome, telefone, email, endereco, num, CEP FROM contatos'; 
             
             $stmt = mysqli_prepare($conn, $query);
             mysqli_stmt_execute($stmt); 
             mysqli_stmt_store_result($stmt); 
 
-            mysqli_stmt_bind_result($stmt, $id, $nome, $telefone, $email);
+            mysqli_stmt_bind_result($stmt, $id, $nome, $telefone, $email, $endereco, $num, $CEP);
             
             $response = array();
 
@@ -25,7 +25,10 @@
                     array_push($response, array( "id" => $id,
                                          "nome" => $nome,
                                          "telefone" => $telefone,
-                                         "email" => $email ));
+                                         "email" => $email,
+                                         "endereco" => $endereco,
+                                         "num" => $num,
+                                         "CEP" => $CEP, ));
                 }
             }
         

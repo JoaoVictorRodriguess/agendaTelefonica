@@ -51,6 +51,9 @@
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Email</th>
+                    <th>Endereço</th>
+                    <th>Numero</th>
+                    <th>CEP</th>
                     <?php
                         if($perfil_usuario == 'Administrador'): ?>
                     <th>Ações</th>
@@ -65,6 +68,9 @@
                             echo "<td>" . htmlspecialchars($contato->nome) . "</td>";
                             echo "<td>" . htmlspecialchars($contato->telefone) . "</td>";
                             echo "<td>" . htmlspecialchars($contato->email) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->endereco) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->num) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->CEP) . "</td>";
 
                             if($perfil_usuario =='Administrador'){
                                 echo "<td>";

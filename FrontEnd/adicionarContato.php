@@ -13,6 +13,9 @@
         $nome = $_POST['nome'];
         $telefone = $_POST['telefone'];
         $email = $_POST['email'];
+        $endereco = $_POST['endereco'];
+        $num = $_POST['num'];
+        $CEP = $_POST['CEP'];
 
         $chave_unica = uniqid(); 
 
@@ -23,6 +26,9 @@
                 'nome' => $nome,
                 'telefone' => $telefone,
                 'email' => $email,
+                'endereco' => $endereco,
+                'num' => $num,
+                'CEP' => $CEP,
                 'chave_unica' => $chave_unica 
                 )
             );
@@ -68,13 +74,31 @@
     <form action="adicionarContato.php" method="POST">
         <div class="addContato">
             <label for="nome">Nome: </label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
 
             <label for="telefone">Telefone: </label>
-            <input type="text" id="telefone" value="" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" required>
+            <input type="text" id="telefone" value="" oninput="this.value = formatarTelefone(this.value)" maxlength="25" name="telefone" placeholder="Digite apenas números (ex: 11912345678)"required>
 
             <label for="email">Email: </label>
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" placeholder="exemplo@email.com" required>
+
+            <div class="endereco">
+                <label for="CEP">CEP:</label>
+                <input type="text" class="CEP" id="CEP" oninput="this.value = formatarCEP(this.value)" name="CEP" placeholder="Digite seu CEP" required>
+
+                <div class="linha-endereco">
+                    <div class="campo-endereco">
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" class="endereco" id="endereco" name="endereco" maxlength="150" placeholder="Rua, avenida ou logradouro" required>
+                    </div>
+
+                    <div class="campo-numero">
+                        <label for="num">Número:</label>
+                        <input type="text" class="num" id="num" maxlength="6" name="num" placeholder="Nº" required>
+                    </div>
+                </div>
+            </div>
+
 
             <button type="submit">Salvar Usuario</button>
             <button type="reset">Limpar Campos</button>

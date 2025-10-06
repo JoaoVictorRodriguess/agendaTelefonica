@@ -20,11 +20,14 @@
             $nome = $_POST['nome'];
             $telefone = $_POST['telefone'];
             $email = $_POST['email'];
+            $endereco = $_POST['endereco'];
+            $num = $_POST['num'];
+            $CEP = $_POST['CEP'];
 
-            $query = 'INSERT INTO contatos (nome, telefone, email) VALUES ( ?, ?, ?)';
+            $query = 'INSERT INTO contatos (nome, telefone, email, endereco, num, CEP) VALUES ( ?, ?, ?, ?, ?, ?)';
 
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, 'sss', $nome, $telefone, $email);
+            mysqli_stmt_bind_param($stmt, 'ssssss', $nome, $telefone, $email,$endereco, $num, $CEP);
             $execute = mysqli_stmt_execute($stmt);
 
             $response = array();

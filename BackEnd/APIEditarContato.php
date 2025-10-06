@@ -11,7 +11,7 @@
 
             if($perfil !='Administrador'){
                 $response = array("Erro", "mensagem" => "Acesso negado. Apenas Administradores podem realizar esta ação.");
-                echo json_encode(@$response);
+                echo json_encode($response);
                 exit();
             }
 
@@ -21,11 +21,14 @@
             $nome = $_POST['nome'];
             $telefone = $_POST['telefone'];
             $email = $_POST['email'];
+            $endereco = $_POST['endereco'];
+            $num = $_POST['num'];
+            $CEP = $_POST['CEP'];
 
-            $query = 'UPDATE contatos SET nome = ?, telefone = ?, email = ? WHERE id = ?'; 
+            $query = 'UPDATE contatos SET nome = ?, telefone = ?, email = ?, endereco = ?, num = ?, CEP = ? WHERE id = ?'; 
 
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, 'sssi', $nome, $telefone, $email, $id);
+            mysqli_stmt_bind_param($stmt, 'ssssssi', $nome, $telefone, $email, $endereco, $num, $CEP, $id);
             $execute = mysqli_stmt_execute($stmt);
 
             $response = array();
