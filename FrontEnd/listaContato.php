@@ -54,6 +54,8 @@
                     <th>Endereço</th>
                     <th>Numero</th>
                     <th>CEP</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
                     <?php
                         if($perfil_usuario == 'Administrador'): ?>
                     <th>Ações</th>
@@ -71,6 +73,8 @@
                             echo "<td>" . htmlspecialchars($contato->endereco) . "</td>";
                             echo "<td>" . htmlspecialchars($contato->num) . "</td>";
                             echo "<td>" . htmlspecialchars($contato->CEP) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->cidade) . "</td>";
+                            echo "<td>" . htmlspecialchars($contato->estado) . "</td>";
 
                             if($perfil_usuario =='Administrador'){
                                 echo "<td>";

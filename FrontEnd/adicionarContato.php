@@ -16,6 +16,8 @@
         $endereco = $_POST['endereco'];
         $num = $_POST['num'];
         $CEP = $_POST['CEP'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
 
         $chave_unica = uniqid(); 
 
@@ -29,6 +31,8 @@
                 'endereco' => $endereco,
                 'num' => $num,
                 'CEP' => $CEP,
+                'cidade' => $cidade,
+                'estado' => $estado,
                 'chave_unica' => $chave_unica 
                 )
             );
@@ -84,17 +88,27 @@
 
             <div class="endereco">
                 <label for="CEP">CEP:</label>
-                <input type="text" class="CEP" id="CEP" oninput="this.value = formatarCEP(this.value)" name="CEP" placeholder="Digite seu CEP" required>
+                <input type="text" class="CEP" id="CEP" oninput ="buscarCEP(this.value)" name="CEP" placeholder="Digite seu CEP" required>
 
                 <div class="linha-endereco">
                     <div class="campo-endereco">
-                    <label for="endereco">Endereço:</label>
-                    <input type="text" class="endereco" id="endereco" name="endereco" maxlength="150" placeholder="Rua, avenida ou logradouro" required>
+                        <label for="endereco">Endereço:</label>
+                        <input type="text" class="endereco" id="endereco" name="endereco" maxlength="150" placeholder="Rua, avenida ou logradouro" required>
                     </div>
 
                     <div class="campo-numero">
                         <label for="num">Número:</label>
                         <input type="text" class="num" id="num" maxlength="6" name="num" placeholder="Nº" required>
+                    </div>
+                </div>
+                <div class="linha-estado">
+                    <div class="campo-cidade">
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" class="cidade" id="cidade" name="cidade" placeholder="Cidade" required>
+                    </div>
+                    <div class="campo-estado">
+                        <label for="estado">Estado:</label>
+                        <input type="text" class="estado" id="estado" name="estado" maxlength="150" placeholder="Estado" required>
                     </div>
                 </div>
             </div>

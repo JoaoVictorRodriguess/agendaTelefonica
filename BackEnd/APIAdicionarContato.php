@@ -11,7 +11,7 @@
 
             if($perfil !='Administrador'){
                 $response = array("Erro", "mensagem" => "Acesso negado. Apenas Administradores podem realizar esta ação.");
-                echo json_encode(@$response);
+                echo json_encode($response);
                 exit();
             }
 
@@ -23,11 +23,13 @@
             $endereco = $_POST['endereco'];
             $num = $_POST['num'];
             $CEP = $_POST['CEP'];
+            $cidade = $_POST['cidade'];
+            $estado = $_POST['estado'];
 
-            $query = 'INSERT INTO contatos (nome, telefone, email, endereco, num, CEP) VALUES ( ?, ?, ?, ?, ?, ?)';
+            $query = 'INSERT INTO contatos (nome, telefone, email, endereco, num, CEP, cidade, estado) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)';
 
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, 'ssssss', $nome, $telefone, $email,$endereco, $num, $CEP);
+            mysqli_stmt_bind_param($stmt, 'ssssssss', $nome, $telefone, $email, $endereco, $num, $CEP, $cidade, $estado);
             $execute = mysqli_stmt_execute($stmt);
 
             $response = array();

@@ -45,6 +45,7 @@ form .addContato{
 }
 
 .linha-endereco label,
+.linha-estado label,
 .addContato label,
 .endereco label {
     display: block;
@@ -53,12 +54,12 @@ form .addContato{
     color: #555;
 }
 
-
 .addContato input[type="text"],
 .addContato input[type="email"],
 .addContato input[type="password"],
 .endereco input[type="text"],
-.linha-endereco input[type="text"] {
+.linha-endereco input[type="text"],
+.linha-estado input[type="text"] {
     width: 100%;
     padding: 10px;
     margin-bottom: 30px;
@@ -94,6 +95,20 @@ form .addContato{
 
 .campo-numero {
   flex: 0.5;
+}
+
+.linha-estado {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.campo-cidade {
+  flex: 2;
+}
+
+.campo-estado {
+  flex: 1;
 }
 
 form .cadContato{

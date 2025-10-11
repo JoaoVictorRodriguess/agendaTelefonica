@@ -24,11 +24,13 @@
             $endereco = $_POST['endereco'];
             $num = $_POST['num'];
             $CEP = $_POST['CEP'];
+            $cidade = $_POST['cidade'];
+            $estado = $_POST['estado'];
 
-            $query = 'UPDATE contatos SET nome = ?, telefone = ?, email = ?, endereco = ?, num = ?, CEP = ? WHERE id = ?'; 
+            $query = 'UPDATE contatos SET nome = ?, telefone = ?, email = ?, endereco = ?, num = ?, CEP = ?, cidade = ?, estado = ? WHERE id = ?'; 
 
             $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, 'ssssssi', $nome, $telefone, $email, $endereco, $num, $CEP, $id);
+            mysqli_stmt_bind_param($stmt, 'ssssssssi', $nome, $telefone, $email, $endereco, $num, $CEP, $cidade, $estado, $id);
             $execute = mysqli_stmt_execute($stmt);
 
             $response = array();

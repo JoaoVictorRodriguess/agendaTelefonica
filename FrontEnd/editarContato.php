@@ -18,6 +18,8 @@
         $endereco = $_POST['endereco'];
         $num = $_POST['num'];
         $CEP = $_POST['CEP'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
 
 
         $postdata = http_build_query(
@@ -30,7 +32,9 @@
                 'email' => $email,
                 'endereco' => $endereco,
                 'num' => $num,
-                'CEP' => $CEP
+                'CEP' => $CEP,
+                'cidade' => $cidade,
+                'estado' => $estado
             )
         );
 
@@ -103,6 +107,8 @@
                     $endereco = $c->endereco;
                     $num = $c->num;
                     $CEP = $c->CEP;
+                    $cidade = $c->cidade;
+                    $estado = $c->estado;
                     $contato_encontrado = true;
                     break;
                 }
@@ -147,7 +153,7 @@
 
             <div class="endereco">
                 <label for="CEP">CEP:</label>
-                <input type="text" id="CEP" name="CEP" oninput="this.value = formatarCEP(this.value)" placeholder="Digite seu CEP" value="<?php echo htmlspecialchars($CEP); ?>"required>
+                <input type="text" class="CEP" id="CEP" oninput ="buscarCEP(this.value)" name="CEP" placeholder="Digite seu CEP" value="<?php echo htmlspecialchars($CEP); ?>"required>
 
                 <div class="linha-endereco">
                     <div class="campo-endereco">
@@ -159,6 +165,16 @@
                         <label for="num">Número:</label>
                         <input type="text" id="num" 
                         maxlength="6" name="num" placeholder="Nº" value="<?php echo htmlspecialchars($num); ?>" required>
+                    </div>
+                </div>
+                <div class="linha-estado">
+                    <div class="campo-cidade">
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" class="cidade" id="cidade" name="cidade" placeholder="Cidade"  value="<?php echo htmlspecialchars($cidade); ?>"required>
+                    </div>
+                    <div class="campo-estado">
+                        <label for="estado">Estado:</label>
+                        <input type="text" class="estado" id="estado" name="estado" maxlength="150" placeholder="Estado"  value="<?php echo htmlspecialchars($estado); ?>"required>
                     </div>
                 </div>
             </div>
