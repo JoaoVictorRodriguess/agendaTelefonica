@@ -80,3 +80,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    const linksExcluir = document.querySelectorAll('a[href^="excluirUsuario.php"]');
+
+    linksExcluir.forEach(link => {
+        link.addEventListener('click', function(event) {
+            const confirmacao = confirm('Tem certeza que deseja excluir este usuario?');
+            if (!confirmacao) {
+                event.preventDefault(); 
+            }
+        });
+    });
+});

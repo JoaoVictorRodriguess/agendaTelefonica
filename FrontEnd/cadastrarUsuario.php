@@ -46,8 +46,15 @@
 
         if($perfil_admin_logado){
             if ($jsonObj->status == 'sucesso') {
-                header("Location: listaUsuario.php");
-                exit();
+                if(isset($_POST['acao'])){
+                    if($_POST['acao'] == 'salvar'){
+                        header("Location: listaUsuario.php");
+                        exit();
+                    }else if($_POST['acao'] == 'salvarNovo'){
+                        header("Location: " . $_SERVER['PHP_SELF']);
+                        exit();
+                    }
+                }
             }else{
                 $mensagem_erro = "Não foi possivel cadastrar esse contato";
                 header("Location: listaUsuario.php");
@@ -101,7 +108,8 @@
                     </select> 
             <?php endif; ?>
 
-            <button type="submit">Salvar Usuario</button>
+            <button type="submit" name="acao" value="salvar">Salvar Usuario</button>
+            <button type="submit" name="acao" value="salvarNovo">Salvar e cadastrar um novo</button>
             <button type="reset">Limpar Campos</button>
         </div>
         </form>
