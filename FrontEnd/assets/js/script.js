@@ -46,20 +46,20 @@ function buscarCEP(CEP){
     }
 
     document.getElementById('CEP').value = formatado;
-    
+
     if(cep.length !== 8)return;
 
     fetch(`https://viacep.com.br/ws/${cep}/json/`).then(response => response.json()).then(dados => {
         if(!dados.erro){
             const enderecoEl = document.getElementById('endereco');
             // const bairroEl   = document.getElementById('bairro');
-            // const cidadeEl   = document.getElementById('cidade');
-            // const estadoEl   = document.getElementById('estado');
+            const cidadeEl   = document.getElementById('cidade');
+            const estadoEl   = document.getElementById('estado');
 
             if (enderecoEl) enderecoEl.value = dados.logradouro ?? '';
             // if (bairroEl)   bairroEl.value   = dados.bairro ?? '';
-            // if (cidadeEl)   cidadeEl.value   = dados.localidade ?? '';
-            // if (estadoEl)   estadoEl.value   = dados.uf ?? '';
+            if (cidadeEl)   cidadeEl.value   = dados.localidade ?? '';
+            if (estadoEl)   estadoEl.value   = dados.uf ?? '';
       } else {
         alert('CEP não encontrado. Verifique e tente novamente.');
       }
