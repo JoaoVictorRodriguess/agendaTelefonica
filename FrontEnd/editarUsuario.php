@@ -5,7 +5,7 @@
 
 
      if($perfil_usuario !='Administrador'){
-        header("Location: listaContato.php");
+        header("Location: listaUsuario.php");
         exit();
     }
 
