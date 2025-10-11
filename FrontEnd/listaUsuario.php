@@ -1,5 +1,5 @@
 <?php
-
+    
     session_start();
     require_once("config.php");
 
@@ -7,21 +7,21 @@
         array('api_token' => $token)
     );
 
-    $opts = array('http' => 
+    $opts = array('http' =>
         array(
             'method' => 'POST',
             'header' => 'Content-Type: Application/x-www-form-urlencoded',
             'content' => $postdata));
-    
+
     $context = stream_context_create($opts);
 
-    $url = $servidor . 'APIListaContato.php';
+    $url = $servidor . 'APIListaUsuario.php';
     $result = file_get_contents($url, false, $context);
 
     $jsonObj = json_decode($result);
 
-
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -29,33 +29,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="assets/js/script.js"></script>
-    <title>Agenda de Contatos</title>
+    <title>Consulta de Usuarios</title>
 </head>
 <body>
     <div class="header">
-        <h1>Agenda de Contatos </h1>
-            <div class="button_exit">
+        <h1>Consulta de Usuarios</h1>
+        <div class="button_exit">
                 <a href="logout.php">Sair</a>
-            </div>
+        </div>
     </div>
     <?php if($perfil_usuario == 'Administrador'):?>
     <div class="button_add">
-        <a href="adicionarContato.php">Novo Contato</a>
-        <a href="listaUsuario.php">Gerenciamento de Usuarios</a>
+        <a href="cadastrarUsuario.php">Novo Usuario</a>
     </div>
     <?php endif; ?>
-    <div class="listaContato">
+    <div class="listaUsuario">
         <table border="1" style="width: 100%">
             <thead>
                 <tr>
+                    <th>ID</th>
                     <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>Endereço</th>
-                    <th>Numero</th>
-                    <th>CEP</th>
-                    <th>Cidade</th>
-                    <th>Estado</th>
+                    <th>Usuario</th>
+                    <th>Perfil</th>
                     <?php
                         if($perfil_usuario == 'Administrador'): ?>
                     <th>Ações</th>
@@ -64,33 +59,31 @@
             </thead>
             <tbody>
                 <?php
-                    if (!empty($jsonObj)){
-                        foreach ( $jsonObj as $contato){
+                    if (is_array($jsonObj) && !empty($jsonObj)){
+                        foreach ( $jsonObj as $usuarios){
                             echo "<tr>";
-                            echo "<td>" . htmlspecialchars($contato->nome) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->telefone) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->email) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->endereco) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->num) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->CEP) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->cidade) . "</td>";
-                            echo "<td>" . htmlspecialchars($contato->estado) . "</td>";
-
+                            echo "<td>" . htmlspecialchars($usuarios->id) . "</td>";
+                            echo "<td>" . htmlspecialchars($usuarios->nome) . "</td>";
+                            echo "<td>" . htmlspecialchars($usuarios->usuario) . "</td>";
+                            echo "<td>" . htmlspecialchars($usuarios->perfil) . "</td>";
                             if($perfil_usuario =='Administrador'){
                                 echo "<td>";
-                                echo "<a class='btn-editar' href='editarContato.php?id=" . $contato->id . "'>Editar</a>";
-                                echo "<a class='btn-excluir' href='excluirContato.php?id=" . $contato->id . "'>Excluir</a>";
+                                echo "<a class='btn-editar' href='editarUsuario.php?id=" . $usuarios->id . "'>Editar</a>";
+                                echo "<a class='btn-excluir' href='excluirUsuario.php?id=" . $usuarios->id . "'>Excluir</a>";
                                 echo "</td>";
                             }
                             echo "</tr>";  
                         }
                     }else{
-                        $colspan = ($perfil_usuario == 'Administrador') ? 4 : 3;
+                        $colspan = ($perfil_usuario == 'Administrador') ? 5 : 4;
                         echo "<tr><td colspan='" . $colspan . "'>Nenhum contato encontrado.</td></tr>";
                     }
                 ?>
             </tbody>
         </table>
     </div>
+    <div class="button_voltar">
+        <a href="listaContato.php">Voltar para a Lista</a>
+    </div><!--button_voltar-->
 </body>
 </html>

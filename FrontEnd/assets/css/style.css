@@ -265,28 +265,39 @@ label .edContato{
     margin-right: 20px;
 }
 
-.listaContato table {
+.listaContato table,
+.listaUsuario table {
     border-collapse: collapse;
     width: 100%;
 }
 
-.listaContato th, td {
+.listaContato th, td,
+.listaUsuario th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
 }
 
-.listaContato th {
+.listaContato th{
     background-color: #0056b3;
     color: white;
     font-weight: bold;
+} 
+
+.listaUsuario th {
+    background-color: #0056b3;
+    color: white;
+    font-weight: bold;
+    width: 4rem;
 }
 
-.listaContato tr:nth-child(even) {
+.listaContato tr:nth-child(even),
+.listaUsuario tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.listaContato tr:hover {
+.listaContato tr:hover,
+.listaUsuario tr:hover {
     background-color: #f1f1f1;
 }
 

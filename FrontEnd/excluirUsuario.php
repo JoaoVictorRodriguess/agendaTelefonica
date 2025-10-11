@@ -1,10 +1,10 @@
 <?php
-    
+
     session_start();
     require_once('config.php');
 
      if($perfil_usuario !='Administrador'){
-        header("Location: listaContato.php");
+        header("Location: listaUsuario.php");
         exit();
     }
 
@@ -29,22 +29,22 @@
         );
 
         $context = stream_context_create($opts);
-        $url = $servidor . 'APIEliminarContato.php';
+        $url = $servidor . 'APIEliminarUsuario.php';
         $result = file_get_contents($url, false, $context);
 
         $jsonObj = json_decode($result);
 
         if ($jsonObj->status == 'sucesso') {
-            header("Location: listaContato.php");
+            header("Location: listaUsuario.php");
             exit();
         }else{
             $mensagem_erro = "Não foi possivel excluir este contato";
-            header("Location: listaContato.php");
+            header("Location: listaUsuario.php");
             exit();
         }
     }else{
-        header("Location: listaContato.php");
+        header("Location: listaUsuario.php");
         exit();
     }
-    
+
 ?>

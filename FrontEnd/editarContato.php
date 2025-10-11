@@ -52,16 +52,6 @@
         $result = file_get_contents($url, false, $context);
         $jsonObj = json_decode($result);
 
-        // if ($jsonObj->status == 'sucesso') {
-        //     header("Location: listaContato.php");
-        //     exit();
-        // }else{
-        //     $mensagem_erro = "Não foi possivel editar este contato";
-        //     //header("Location: listaContato.php");
-        //     echo "Nao foi possivel editar este contato";
-        //     exit();
-        // }
-
         if ($jsonObj && isset($jsonObj->status) && strtolower($jsonObj->status) == 'sucesso') {
             header("Location: listaContato.php");
             exit();

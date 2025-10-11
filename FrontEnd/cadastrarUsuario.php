@@ -46,11 +46,11 @@
 
         if($perfil_admin_logado){
             if ($jsonObj->status == 'sucesso') {
-                header("Location: listaContato.php");
+                header("Location: listaUsuario.php");
                 exit();
             }else{
                 $mensagem_erro = "Não foi possivel cadastrar esse contato";
-                header("Location: listaContato.php");
+                header("Location: listaUsuario.php");
                 exit();
             }
         }else{
@@ -108,7 +108,7 @@
         <?php
                 if($perfil_admin_logado): ?>
                     <div class="button_voltar">
-                        <a href="listaContato.php">Voltar para a Lista</a>
+                        <a href="listaUsuario.php">Voltar para a Lista</a>
                     </div><!--button_voltar-->
         <?php
             else:?>
