@@ -63,7 +63,7 @@
                     exit();
                 }
             }else{
-                $mensagem_ero = $jsonObj -> mensagem;
+                $mensagem_erro = $jsonObj -> mensagem;
             }
         }
     }
