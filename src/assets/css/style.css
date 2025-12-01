@@ -14,10 +14,9 @@ body {
 }
 
 .header h1 {
-  font-family: sans-serif;
   font-size: 2.5rem;
   color: #333;
-  margin: 0;
+  margin-top: 10%;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: bold;

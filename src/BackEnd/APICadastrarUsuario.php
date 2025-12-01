@@ -4,7 +4,7 @@
 
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        require_once('../../dbConnect.php');
+        require_once('AgendaDBConnect.php');
 
         $nome = $_POST['nome'];
         $usuario = $_POST['usuario'];

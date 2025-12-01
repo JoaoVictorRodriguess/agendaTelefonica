@@ -15,7 +15,7 @@
                 exit();
             }
 
-            require_once('../../dbConnect.php');
+            require_once('AgendaDBConnect.php');
 
             $id = $_POST['id'];
 

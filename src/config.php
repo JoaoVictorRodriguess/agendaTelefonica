@@ -3,7 +3,8 @@
         session_start();
     }
 
-    $servidor = 'http://localhost/AgendaTelefonica/BackEnd/';
+
+    $servidor = "http://web/BackEnd/";
 
     if (!isset($_SESSION['chave'])) {
         $_SESSION['chave'] = 'usuario123';

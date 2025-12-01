@@ -15,7 +15,7 @@
                 exit();
             }
 
-            require_once('../../dbConnect.php');
+            require_once('AgendaDBConnect.php');
 
             $nome = $_POST['nome'];
             $telefone = $_POST['telefone'];

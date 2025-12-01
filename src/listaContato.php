@@ -1,6 +1,14 @@
 <?php
 
     session_start();
+    if (!isset($_SESSION['perfil'])) {
+    header("Location: login.php");
+    exit();
+    }
+    
+
+    $perfil_usuario = $_SESSION['perfil'];
+
     require_once("config.php");
 
     $postdata = http_build_query(

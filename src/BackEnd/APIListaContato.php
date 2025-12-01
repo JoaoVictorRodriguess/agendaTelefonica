@@ -8,7 +8,7 @@
         $api_token = $_POST['api_token'];
         if($api_token == $hash ){
             
-            require_once('../../dbConnect.php'); 
+            require_once('AgendaDBConnect.php'); 
 
             $query = 'SELECT id, nome, telefone, email, endereco, num, CEP, cidade, estado FROM contatos'; 
             
