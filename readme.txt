@@ -59,4 +59,8 @@ docker-compose down
 git clone https://github.com/seu-usuario/agendatelefonica.git
 docker-compose build
 docker-compose up -d
+<<<<<<< HEAD
 ``` 
+=======
+``` 
+>>>>>>> e95518477599ca7f64aff4f96d7e36e7a1338c40
