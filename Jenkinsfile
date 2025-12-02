@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        PROJECT_PATH = "${WORKSPACE}"  // Raiz do projeto
+        PROJECT_PATH = "${WORKSPACE}"  
     }
 
     stages {
@@ -15,7 +15,6 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Rodando testes básicos...'
-                // Exemplo: apenas checando versão PHP no container
                 sh 'docker-compose run --rm web php -v'
             }
         }
